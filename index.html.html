@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #certificate {
+            display: none;
+            margin-top: 20px;
+            width: 80%;
+            max-width: 600px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Certificate Verification</h2>
+    <p>Enter your certificate number to verify:</p>
+    <input type="text" id="certNumber" placeholder="Enter Certificate Number">
+    <button onclick="verifyCertificate()">Verify</button>
+    
+    <div id="result"></div>
+    <img id="certificate" src="" alt="Certificate Image">
+
+    <script>
+        const certificates = {
+            "205315-75": "cert1.jpg",
+            "789012": "cert2.jpg",
+            "345678": "cert3.jpg"
+        };
+
+        function verifyCertificate() {
+            const inputNumber = document.getElementById('certNumber').value.trim();
+            const resultDiv = document.getElementById('result');
+            const certificateImage = document.getElementById('certificate');
+            
+            if (certificates[inputNumber]) {
+                certificateImage.src = certificates[inputNumber];
+                certificateImage.style.display = 'block';
+                resultDiv.innerHTML = "<p style='color: green;'>Certificate Verified!</p>";
+            } else {
+                certificateImage.style.display = 'none';
+                resultDiv.innerHTML = "<p style='color: red;'>Invalid Certificate Number</p>";
+            }
+        }
+    </script>
+</body>
+</html>
